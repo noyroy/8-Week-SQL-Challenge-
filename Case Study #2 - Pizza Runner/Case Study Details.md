@@ -139,3 +139,5 @@ Click to here to aceess the data : [Data Link](https://github.com/noyroy/8-Week-
 If Danny wants to expand his range of pizzas - how would this impact the existing data design? Write an INSERT statement to demonstrate what would happen if a new Supreme pizza with all the toppings was added to the Pizza Runner menu?
 
 ***
+
+*Click here to find solutions to these questions* [Solution Script](https://github.com/noyroy/8-Week-SQL-Challenge-/blob/52382624b315fca56f3195ffa47dcc9babf3438d/Case%20Study%20%232%20-%20Pizza%20Runner/Solutions.md)
