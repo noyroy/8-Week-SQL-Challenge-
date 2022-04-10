@@ -11,6 +11,9 @@ ON t.[value] = pt.topping_id
 GROUP BY CAST(topping_name as VARCHAR)
 HAVING COUNT(*) > 1
 ````
+![image](https://user-images.githubusercontent.com/103337379/162616574-04021c0d-6432-4c62-8167-32f49cb198e6.png)
+
+
 
 ### 2. What was the most commonly added extra?
 
@@ -24,6 +27,8 @@ WHERE topping_id  in    (SELECT  value
                         GROUP BY [value]
                         HAVING count(*)>1);
 ````
+
+![image](https://user-images.githubusercontent.com/103337379/162616586-0808bea5-3043-439d-8b0f-e7aaa1369c39.png)
 
 
 ### 3. What was the most common exclusion?
@@ -39,6 +44,9 @@ WHERE counts =  (	SELECT  MAX(value) counts
 					FROM customer_orders
 					CROSS APPLY string_split(exclusions,','));
 ````
+
+![image](https://user-images.githubusercontent.com/103337379/162616594-b35328f7-1d1f-4f83-806d-74e5150451a2.png)
+
 
 ### 4. Generate an order item for each record in the customers_orders table in the format of one of the following:
 #### a. Meat Lovers
@@ -57,6 +65,8 @@ CASE
 END AS pizza_label
 FROM customer_orders;
 ````
+
+![image](https://user-images.githubusercontent.com/103337379/162616606-04bf8c6f-8471-4616-9368-7b6112e996ee.png)
 
 
 
