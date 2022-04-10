@@ -1,4 +1,4 @@
-*This case study requires some data processing. Script for the same can be found here* ![DML Script](https://github.com/noyroy/8-Week-SQL-Challenge-/blob/d2f24fefb7cb73d9d5bfa394247fefe23778b2a4/Case%20Study%20%232%20-%20Pizza%20Runner/Github%20Scripts/DML%20Operations.sql) *.*
+*This case study requires some data processing. Script for the same can be found here* [DML Script](https://github.com/noyroy/8-Week-SQL-Challenge-/blob/d2f24fefb7cb73d9d5bfa394247fefe23778b2a4/Case%20Study%20%232%20-%20Pizza%20Runner/Github%20Scripts/DML%20Operations.sql) *.*
 
 
 
