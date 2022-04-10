@@ -40,7 +40,7 @@ ORDER BY COUNT(*) DESC
 ![image](https://user-images.githubusercontent.com/103337379/162602842-5f7c881f-f44e-4a93-9fa5-82fed1dab225.png)
 
 
-#### For most cases the preparation time is directly proportional with the time taken
+##### *For most cases the preparation time is directly proportional with the time taken.*
 
 
 ### 4. What was the average distance travelled for each customer?
@@ -108,16 +108,16 @@ ORDER BY average_speed DESC;
 ![image](https://user-images.githubusercontent.com/103337379/162603011-38bc18a6-a841-46e8-aef3-ecb89c8c99f4.png)
 
 
-#### Runner 2 drives much more aggressively compared to the rest
-#### Remaining two drives on an agerage speed
+##### *Runner 2 drives much more aggressively compared to the rest.*
+##### *Remaining two drives on an agerage speed.*
 
 
 ### 7. What is the successful delivery percentage for each runner?
 
 
-##### All of of the runners have completed their deliveries successfully. The cancelled orders are beyond their scope of action.
+##### *All of of the runners have completed their deliveries successfully. The cancelled orders are beyond their scope of action.*
 
-##### But here is the solution.
+##### *But here is the solution.*
 ````sql
 SELECT runner_id , count(*) as Total_orders , 
     SUM(
