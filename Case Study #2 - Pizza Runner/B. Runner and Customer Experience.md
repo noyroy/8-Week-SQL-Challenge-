@@ -4,7 +4,9 @@
 ### 01. How many runners signed up for each 1 week period?
 
 ````sql
-SELECT DATEPART(wk,registration_date) Week_Number, COUNT(*) no_of_runners
+SELECT 
+    DATEPART(wk,registration_date) Week_Number
+    ,COUNT(*) no_of_runners
 FROM runners
 GROUP BY DATEPART(wk,registration_date);
 ````
@@ -14,7 +16,8 @@ GROUP BY DATEPART(wk,registration_date);
 ### 02. What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
 
 ```sql
-SELECT  AVG(DATEDIFF(MINUTE,c.order_time,r.pickup_time)) average_pickup_time
+SELECT  
+    AVG(DATEDIFF(MINUTE,c.order_time,r.pickup_time)) average_pickup_time
 FROM customer_orders c
 INNER JOIN runner_orders r ON c.order_id = r.order_id
 WHERE r.cancellation IS NULL;
@@ -68,11 +71,13 @@ WITH preparing_time
         SELECT  c.order_id
        ,    (DATEDIFF(MINUTE,c.order_time,r.pickup_time) + r.duration) AS min_taken
         FROM customer_orders c
-INNER JOIN runner_orders r
-ON c.order_id = r.order_id
-WHERE r.cancellation IS NULL
+        INNER JOIN runner_orders r
+        ON c.order_id = r.order_id
+        WHERE r.cancellation IS NULL
         )
-SELECT  MAX(total_time_taken) - MIN(total_time_taken) AS TIME_DELTA
+
+SELECT  
+    MAX(total_time_taken) - MIN(total_time_taken) AS TIME_DELTA
 FROM preparing_time;
 ````
 
@@ -85,21 +90,24 @@ FROM preparing_time;
 WITH cte
 (order_id , runner_id, speed,distance
 ) AS (
-SELECT  c.order_id
-       ,r.runner_id
-       ,ROUND(r.distance/(CAST(r.duration AS float)/60),2) Speed
-	   ,r.distance
-FROM customer_orders c
-INNER JOIN runner_orders r
-ON c.order_id = r.order_id
-WHERE r.cancellation IS NULL )                   
+        SELECT  c.order_id
+            ,r.runner_id
+            ,ROUND(r.distance/(CAST(r.duration AS float)/60),2) Speed
+            ,r.distance
+        FROM customer_orders c
+        INNER JOIN runner_orders r
+        ON c.order_id = r.order_id
+        WHERE r.cancellation IS NULL )                   
 
-SELECT  order_id
+
+SELECT  
+        order_id
        ,runner_id
 	   ,distance
        ,AVG(speed) AS average_speed	  
 FROM cte
-GROUP BY  order_id
+GROUP BY  
+          order_id
          ,runner_id
 		 ,distance
 ORDER BY average_speed DESC;
@@ -119,11 +127,14 @@ ORDER BY average_speed DESC;
 
 ##### *But here is the solution.*
 ````sql
-SELECT runner_id , count(*) as Total_orders , 
-    SUM(
-        CASE WHEN distance IS NOT NULL THEN 1 ELSE 0 END) as Completed_orders,
-    CAST(SUM(
-        CASE WHEN distance IS NOT NULL THEN 1 ELSE 0 END) as FLOAT)/COUNT(*)*100 as completion_rate
+SELECT 
+    runner_id 
+    ,COUNT(*) AS Total_orders , 
+    SUM(CASE 
+            WHEN distance IS NOT NULL THEN 1 ELSE 0 END) AS Completed_orders,
+    CAST(SUM(CASE 
+                WHEN distance IS NOT NULL THEN 1 ELSE 0 END)
+    AS FLOAT)/COUNT(*)*100 AS completion_rate
 FROM runner_orders
 GROUP BY runner_id;
 ````
